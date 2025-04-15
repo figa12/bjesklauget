@@ -1,0 +1,9 @@
+version: '1.2'
+timestamp: 1744290585
+count: 1
+index:
+  figa:
+    storage_key: figa
+    storage_timestamp: 1744290584
+    key: figa
+    email: figa.figa@gmail.com

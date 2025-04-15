@@ -1,0 +1,11 @@
+state: enabled
+email: figa.figa@gmail.com
+fullname: 'Nicklas Andersen'
+title: Administrator
+access:
+  admin:
+    login: true
+    super: true
+  site:
+    login: true
+hashed_password: $2y$10$Nuwdi/kome3ilSkLYztb9OzaUVq2RcxfpTFqSD2E3X59Xkns8inLC
