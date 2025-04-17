@@ -1,0 +1,227 @@
+/* Bjesklauget Custom Theme Styles */
+
+/* Define Color Variables */
+:root {
+    --bjesk-green: #4CAF50; /* Herbal green */
+    --bjesk-dark-green: #388E3C; /* Darker green */
+    --bjesk-brown: #8D6E63; /* Earthy brown */
+    --bjesk-amber: #FFC107; /* Amber accent */
+    --bjesk-light-bg: #F5F5F5; /* Light background */
+    --bjesk-text: #333333; /* Main text */
+    --bjesk-light-text: #FAFAFA; /* Light text on dark bg */
+}
+
+/* Global Styles */
+body {
+    font-family: Arial, Helvetica, sans-serif; /* Clean body font */
+    color: var(--bjesk-text);
+    background-color: var(--bjesk-light-bg); /* Light background */
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, Times New Roman, serif; /* Traditional heading font */
+    color: var(--bjesk-dark-green); /* Dark green headings */
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    border-bottom: 2px solid var(--bjesk-green); /* Green underline for H1 */
+    padding-bottom: 0.3em;
+}
+
+a {
+    color: var(--bjesk-green); /* Green links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover, a:focus {
+    color: var(--bjesk-dark-green); /* Darker green on hover */
+    text-decoration: underline;
+}
+
+/* Header and Navigation */
+#header {
+    background-color: var(--bjesk-dark-green); /* Dark green header */
+    color: var(--bjesk-light-text);
+    padding: 1rem 0; /* Adjust padding as needed */
+}
+
+#header #logo h3 a {
+    color: var(--bjesk-light-text); /* Light logo text */
+    font-family: Georgia, Times New Roman, serif; /* Match heading font */
+    font-weight: bold;
+}
+#header #logo h3 a:hover {
+    color: var(--bjesk-amber); /* Amber hover for logo */
+    text-decoration: none;
+}
+
+#navbar ul.navigation {
+    /* Add styling if needed, default Quark might be okay */
+}
+
+#navbar ul.navigation li a {
+    color: var(--bjesk-light-text); /* Light nav links */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#navbar ul.navigation li.active > a,
+#navbar ul.navigation li > a:hover {
+    background-color: var(--bjesk-green); /* Lighter green background on hover/active */
+    color: var(--bjesk-light-text);
+}
+
+/* Main Content Area */
+#main {
+    padding: 2rem 0; /* Add padding around main content */
+}
+
+/* Buttons (if any are used) */
+.button, button, input[type="submit"], input[type="reset"], input[type="button"] {
+    background-color: var(--bjesk-green);
+    color: var(--bjesk-light-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover, button:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover {
+    background-color: var(--bjesk-dark-green);
+}
+
+/* Footer */
+#footer {
+    background-color: #e0e0e0; /* Slightly darker than light bg */
+    color: #555;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+/* --- Specific Section Styling --- */
+
+/* Events List Styling (Refining styles added in default.html.twig) */
+.events-list .event-item {
+    background-color: #fff; /* White background for items */
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+.events-list .event-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.events-list .event-item h3 a {
+    color: var(--bjesk-dark-green); /* Match heading color */
+}
+.events-list .event-item h3 a:hover {
+    color: var(--bjesk-green);
+}
+
+.events-list .event-item .event-date {
+    color: var(--bjesk-brown); /* Brown date */
+    font-style: italic;
+}
+
+.events-list .event-item-thumbnail img {
+    border-radius: 4px; /* Rounded corners for thumbnails */
+}
+
+/* Individual Event Page Styling */
+.event-page h1 {
+    border-bottom-color: var(--bjesk-amber); /* Amber underline for event title */
+}
+
+.event-page .event-date,
+.event-page .event-type {
+    font-size: 1.1em;
+    color: var(--bjesk-brown);
+    margin-bottom: 1rem;
+}
+
+.event-minutes h2,
+.event-gallery h2 {
+    color: var(--bjesk-dark-green);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.3em;
+    margin-top: 2rem;
+}
+
+.minutes-download a {
+    display: inline-block;
+    background-color: var(--bjesk-brown);
+    color: var(--bjesk-light-text);
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.minutes-download a:hover {
+    background-color: #6D4C41; /* Darker brown */
+    color: var(--bjesk-light-text);
+    text-decoration: none;
+}
+.minutes-download i {
+    margin-right: 5px;
+}
+
+/* Event Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust min size */
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.gallery-item img.thumbnail {
+    border: 2px solid var(--bjesk-brown); /* Brown border */
+    padding: 4px;
+    background-color: #fff;
+    border-radius: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-item img.thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.gallery-item .caption {
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 0.5em;
+    color: var(--bjesk-brown);
+}
+
+/* Table Styling (e.g., for Members page) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px 12px;
+    text-align: left;
+}
+th {
+    background-color: var(--bjesk-green); /* Green table header */
+    color: var(--bjesk-light-text);
+    font-weight: bold;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Subtle striping */
+}
+tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+/* Remove inline styles from templates if they exist */
+/* (Check default.html.twig and event.html.twig for <style> blocks and remove them) */

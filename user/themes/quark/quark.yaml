@@ -1,5 +1,5 @@
 enabled: true
-production-mode: true
+production-mode: false # Temporarily disable for testing custom CSS
 grid-size: grid-lg
 header-fixed: true
 header-animated: true

@@ -1,5 +1,42 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
+    {# Render standard page content first (e.g., the "# Past Events" heading) #}
     {{ page.content|raw }}
+
+    {# Check if this page is configured as a collection (like our Events page) #}
+    {% set collection = page.collection() %}
+
+    {% if collection|length > 0 %}
+        <div class="events-list"> {# Use a class for styling #}
+            {% for item in collection %}
+                <div class="event-item">
+                    {% set thumbnail_file = item.header.thumbnail %}
+                    {% set thumbnail_image = thumbnail_file ? item.media[thumbnail_file] : null %}
+                    <div class="event-item-content">
+                        <h3><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                        {% if item.date %}
+                            <p class="event-date">{{ item.date|date("F j, Y") }}</p>
+                        {% endif %}
+                        {# Optional: Add a short summary/excerpt if needed later #}
+                        {# <p>{{ item.summary(100) }}</p> #}
+                    </div>
+                    {% if thumbnail_image %}
+                        <div class="event-item-thumbnail">
+                            <a href="{{ item.url }}">
+                                {{ thumbnail_image.cropResize(200, 150).html(item.title, item.title, 'thumbnail')|raw }}
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        {# Add pagination if enabled #}
+        {% if config.plugins.pagination.enabled and collection.params.pagination %}
+            {% include 'partials/pagination.html.twig' with {'base_url': page.url, 'pagination': collection.params.pagination} %}
+        {% endif %}
+
+    {% endif %} {# End collection check #}
+
 {% endblock %}

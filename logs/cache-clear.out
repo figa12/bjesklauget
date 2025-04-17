@@ -1,8 +1,7 @@
-2025-04-15T03:00:40-07:00
+2025-04-17T03:00:43-07:00
 >>>>>>>>>>>>>>>>>>>>>>>>>
 Cleared:  /app/www/public/cache/twig/*
 Cleared:  /app/www/public/cache/doctrine/*
 Cleared:  /app/www/public/cache/compiled/*
-Cleared:  /app/www/public/assets/*
 
 Touched: /app/www/public/user/config/system.yaml

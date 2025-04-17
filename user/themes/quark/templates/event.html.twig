@@ -1,0 +1,84 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+    {# Get the gallery images and enable Featherlight if images exist #}
+    {% set gallery_images = page.header.gallery_images %}
+    {% if gallery_images %}
+        {% do assets.addJs('jquery', 101) %}
+        {% do assets.addJs('theme://js/featherlight.min.js') %}
+        {% do assets.addCss('theme://css/featherlight.min.css') %}
+    {% endif %}
+
+    <div class="event-page">
+        {# Display Title and Date #}
+        <h1>{{ page.title }}</h1>
+        {% if page.date %}
+        <p class="event-date"><strong>Date:</strong> {{ page.date|date("F j, Y") }}</p> {# Format date nicely #}
+        {% endif %}
+        {% if page.header.event_type %}
+        <p class="event-type"><strong>Type:</strong> {{ page.header.event_type }}</p>
+        {% endif %}
+
+        {# Display Page Content (if any) #}
+        {% if page.content %}
+            <div class="event-description">
+                {{ page.content|raw }}
+            </div>
+            <hr>
+        {% endif %}
+
+        {# Display Minutes #}
+        {% if page.header.minutes_text or page.header.minutes_file %}
+            <div class="event-minutes">
+                <h2>Minutes</h2>
+                {% if page.header.minutes_text %}
+                    <div class="minutes-text">
+                        {{ page.header.minutes_text|markdown|raw }} {# Process markdown in minutes text #}
+                    </div>
+                {% endif %}
+                {% if page.header.minutes_file %}
+                    {% set minutes_file_obj = page.media[page.header.minutes_file] %}
+                    {% if minutes_file_obj %}
+                    <p class="minutes-download">
+                        <a href="{{ minutes_file_obj.url }}" download>
+                            <i class="fa fa-download"></i> Download Minutes ({{ minutes_file_obj.filename }})
+                        </a>
+                    </p>
+                    {% else %}
+                    <p class="error">Minutes file '{{ page.header.minutes_file }}' not found.</p>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <hr>
+        {% endif %}
+
+        {# Display Photo Gallery #}
+        {% if gallery_images %}
+            <div class="event-gallery">
+                <h2>Photo Gallery</h2>
+                <div class="gallery-grid"> {# Use a grid for layout #}
+                {% for item in gallery_images %}
+                    {% set image = page.media[item.image] %}
+                    {% if image %}
+                        <div class="gallery-item">
+                            <a href="{{ image.url }}" data-featherlight="image" class="gallery-lightbox">
+                                {{ image.cropResize(300, 200).html(item.caption ?: page.title, item.caption ?: page.title, 'thumbnail')|raw }} {# Create thumbnail #}
+                            </a>
+                            {% if item.caption %}
+                                <p class="caption">{{ item.caption }}</p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+            {# Initialize Featherlight for the gallery #}
+            <script>
+            $(document).ready(function() {
+                $('.gallery-lightbox').featherlight();
+            });
+            </script>
+        {% endif %}
+
+    </div> {# End event-page #}
+{% endblock %}
